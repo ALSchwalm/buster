@@ -66,7 +66,7 @@ def main():
                 e = PyQuery(element)
                 href = e.attr('href')
                 if not abs_url_regex.search(href):
-                    new_href = re.sub(r'rss/index\.html$', 'rss/index.rss', href)
+                    new_href = re.sub(r'rss/index\.html$', 'rss/index.xml', href)
                     new_href = re.sub(r'/index\.html$', '/', new_href)
                     e.attr('href', new_href)
                     print "\t", href, "=>", new_href
@@ -81,7 +81,7 @@ def main():
                 parser = 'html'
                 if root.endswith("/rss"):  # rename rss index.html to index.rss
                     parser = 'xml'
-                    newfilepath = os.path.join(root, os.path.splitext(filename)[0] + ".rss")
+                    newfilepath = os.path.join(root, os.path.splitext(filename)[0] + ".xml")
                     os.rename(filepath, newfilepath)
                     filepath = newfilepath
                 with open(filepath) as f:
